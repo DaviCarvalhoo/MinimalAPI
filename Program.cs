@@ -7,6 +7,7 @@ using MinimalAPI.Domain.ModelViews;
 using MinimalAPI.Domain.Services;
 using MinimalAPI.Infra.Db;
 
+#region Builder
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAdministratorService, AdministratorService>();
@@ -22,18 +23,23 @@ builder.Services.AddDbContext<DbContexto>(options => {
   );
 });
 var app = builder.Build();
+#endregion
 
+#region Home
+app.MapGet("/", () => Results.Json(new Home())).WithTags("Home");
+#endregion
 
-app.MapGet("/", () => Results.Json(new Home()));
+#region Administrator
 
 app.MapPost("/login", ([FromBody]LoginDTO loginDTO, IAdministratorService administratorService) =>{
   if(administratorService.Login(loginDTO) != null)
     return Results.Ok("Login com sucesso");
   else
     return Results.Unauthorized();
-});
+}).WithTags("Administrators");
+#endregion
 
-
+#region  Veiculos
 app.MapPost("/veiculos", ([FromBody]VeiculoDTO veiculoDTO, IVeiculoService veiculoService) =>{
 
   var veiculo = new Veiculo{
@@ -45,13 +51,15 @@ app.MapPost("/veiculos", ([FromBody]VeiculoDTO veiculoDTO, IVeiculoService veicu
   veiculoService.Incluir(veiculo);
 
   return Results.Created($"/veiculo/{veiculo.Id}", veiculo);
-});
+}).WithTags("Veiculo");
 app.MapGet("/veiculos", ([FromQuery]int? pagina, IVeiculoService veiculoService) =>{
 
   var veiculos = veiculoService.Todos(pagina);
 
   return Results.Ok(veiculos);
-});
+}).WithTags("Veiculo");
+
+#endregion
 
 app.UseSwagger();
 app.UseSwaggerUI();
