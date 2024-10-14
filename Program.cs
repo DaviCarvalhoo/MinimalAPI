@@ -8,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAdministratorService, AdministratorService>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<DbContexto>(options => {
   options.UseMySql(
     builder.Configuration.GetConnectionString("mysql"),
@@ -15,6 +18,7 @@ builder.Services.AddDbContext<DbContexto>(options => {
   );
 });
 var app = builder.Build();
+
 
 app.MapGet("/", () => "Hello World!");
 app.MapPost("/login", ([FromBody]LoginDTO loginDTO, IAdministratorService administratorService) =>{
@@ -25,7 +29,8 @@ app.MapPost("/login", ([FromBody]LoginDTO loginDTO, IAdministratorService admini
 });
 
 
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.Run();
 
 
