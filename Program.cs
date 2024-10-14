@@ -51,13 +51,22 @@ app.MapPost("/veiculos", ([FromBody]VeiculoDTO veiculoDTO, IVeiculoService veicu
   veiculoService.Incluir(veiculo);
 
   return Results.Created($"/veiculo/{veiculo.Id}", veiculo);
-}).WithTags("Veiculo");
+}).WithTags("Veiculos");
+
 app.MapGet("/veiculos", ([FromQuery]int? pagina, IVeiculoService veiculoService) =>{
 
   var veiculos = veiculoService.Todos(pagina);
 
   return Results.Ok(veiculos);
-}).WithTags("Veiculo");
+}).WithTags("Veiculos");
+
+app.MapGet("/veiculos{id}", ([FromRoute]int id, IVeiculoService veiculoService) =>{
+
+  var veiculo = veiculoService.BuscaPorId(id);
+  if(veiculo == null) return Results.NotFound();
+
+  return Results.Ok(veiculo);
+}).WithTags("Veiculos");
 
 #endregion
 
