@@ -98,3 +98,8 @@ C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAna
 C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Davi\git_projects\MinimalAPI\obj\Debug\net8.0\MinimalAPI.csproj.AssemblyReference.cache
 C:\Users\Davi\git_projects\MinimalAPI\obj\Debug\net8.0\MinimalAPI.csproj.Up2Date
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Davi\git_projects\MinimalAPI\obj\Debug\net8.0\MinimalAPI.MvcApplicationPartsAssemblyInfo.cs

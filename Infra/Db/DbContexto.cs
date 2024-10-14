@@ -15,6 +15,7 @@ namespace MinimalAPI.Infra.Db
             _configuracaoAppSettings = configuracaoAppSetings;
         }
         public DbSet<Administrator> Administrators {get; set;} = default!;
+        public DbSet<Veiculo> Veiculos {get; set;} = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
