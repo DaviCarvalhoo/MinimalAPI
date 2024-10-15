@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MinimalAPI.Domain.DTOs;
 using MinimalAPI.Domain.Entitys;
+using MinimalAPI.Domain.Enums;
 using MinimalAPI.Domain.Interface;
 using MinimalAPI.Domain.ModelViews;
 using MinimalAPI.Domain.Services;
@@ -36,6 +37,62 @@ app.MapPost("/login", ([FromBody]LoginDTO loginDTO, IAdministratorService admini
     return Results.Ok("Login com sucesso");
   else
     return Results.Unauthorized();
+}).WithTags("Administrators");
+
+app.MapGet("/administradores", ([FromQuery]int? pagina, IAdministratorService administratorService) =>{
+  var adms = new List<AdministratorModelView>();
+  var administradores = administratorService.Todos(pagina);
+  foreach(var adm in administradores)
+  {
+    adms.Add(new AdministratorModelView{
+      Id = adm.Id,
+      Email = adm.Email,
+      Perfil = adm.Perfil
+    });
+  }
+  return Results.Ok(adms);
+}).WithTags("Administrators");
+
+app.MapGet("/administradores{id}", ([FromRoute]int id, IAdministratorService administratorService) =>{
+
+  var administrator = administratorService.BuscaPorId(id);
+  if(administrator == null) return Results.NotFound();
+
+  return Results.Ok(new AdministratorModelView{
+      Id = administrator.Id,
+      Email = administrator.Email,
+      Perfil = administrator.Perfil
+    });
+}).WithTags("Administrators");
+
+app.MapPost("/administradores", ([FromBody]AdministratorDTO administratorDTO, IAdministratorService administratorService) =>{
+  var validacao = new ErrosDeValidacao{
+    Mensagens = new List<string>()
+  };
+
+  if(string.IsNullOrEmpty(administratorDTO.Email))
+    validacao.Mensagens.Add("Email não pode ser vazio");
+  if(string.IsNullOrEmpty(administratorDTO.Senha))
+    validacao.Mensagens.Add("Senha não pode ser vazia");
+  if(administratorDTO.Perfil == null)
+    validacao.Mensagens.Add("Perfil não pode ser vazio");
+
+  if(validacao.Mensagens.Count > 0)
+    return Results.BadRequest(validacao);
+
+  var administrator = new Administrator{
+    Email = administratorDTO.Email,
+    Senha = administratorDTO.Senha,
+    Perfil = administratorDTO.Perfil.ToString() ?? Perfil.Editor.ToString(), 
+  };
+
+  administratorService.Incluir(administrator);
+
+  return Results.Created($"/administradores/{administrator.Id}", new AdministratorModelView{
+      Id = administrator.Id,
+      Email = administrator.Email,
+      Perfil = administrator.Perfil
+    });
 }).WithTags("Administrators");
 #endregion
 
