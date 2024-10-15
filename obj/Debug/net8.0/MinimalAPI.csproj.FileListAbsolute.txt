@@ -103,3 +103,11 @@ C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Sw
 C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Davi\git_projects\MinimalAPI\obj\Debug\net8.0\MinimalAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Davi\git_projects\MinimalAPI\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
